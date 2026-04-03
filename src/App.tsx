@@ -77,7 +77,8 @@ export default function App() {
           >
             <h1 className="text-5xl md:text-7xl font-bold text-stone-900 leading-[1.1] mb-6">
               Assistante Maternelle <br />
-              <span className="text-orange-500 text-4xl md:text-5xl block mt-2">à Saint-Clément</span>
+              <span className="text-orange-500 text-4xl md:text-5xl block mt-2">à Saint-Clément (19700)</span>
+              <span className="text-stone-400 text-lg md:text-xl block mt-2 font-medium uppercase tracking-widest">Corrèze — Limousin</span>
             </h1>
             <div className="flex flex-col gap-2 mb-8">
               <p className="text-2xl font-semibold text-stone-700 flex items-center gap-3">
