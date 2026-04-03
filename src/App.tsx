@@ -75,15 +75,21 @@ export default function App() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block px-4 py-1.5 bg-orange-100 text-orange-700 rounded-full text-sm font-bold mb-6">
-              Assistante Maternelle Agréée à Saint-Clément
-            </span>
-            <h1 className="text-5xl md:text-6xl font-bold text-stone-900 leading-[1.1] mb-6">
-              L'éveil et l'épanouissement de votre enfant au cœur d'un <span className="text-orange-500">accueil professionnel.</span>
+            <h1 className="text-5xl md:text-7xl font-bold text-stone-900 leading-[1.1] mb-6">
+              Assistante Maternelle <br />
+              <span className="text-orange-500 text-4xl md:text-5xl block mt-2">à Saint-Clément</span>
             </h1>
+            <div className="flex flex-col gap-2 mb-8">
+              <p className="text-2xl font-semibold text-stone-700 flex items-center gap-3">
+                <ShieldCheck className="text-orange-500" size={28} />
+                Agréée depuis 2011
+              </p>
+              <p className="text-xl italic text-stone-500 font-medium">
+                "Grandir ensemble, pas à pas"
+              </p>
+            </div>
             <p className="text-lg text-stone-600 mb-8 leading-relaxed max-w-xl">
-              J'accueille vos enfants dans un environnement calme, sécurisé et stimulant à Saint-Clément. 
-              Un accompagnement personnalisé pour grandir sereinement et à son propre rythme.
+              Un accueil professionnel et bienveillant pour l'éveil et l'épanouissement de votre enfant dans un cadre sécurisé.
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
