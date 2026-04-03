@@ -79,11 +79,11 @@ export default function App() {
               Assistante Maternelle Agréée à Saint-Clément
             </span>
             <h1 className="text-5xl md:text-6xl font-bold text-stone-900 leading-[1.1] mb-6">
-              Accompagner la <span className="text-orange-500">prunelle de vos yeux</span> avec bienveillance.
+              L'éveil et l'épanouissement de votre enfant au cœur d'un <span className="text-orange-500">accueil professionnel.</span>
             </h1>
             <p className="text-lg text-stone-600 mb-8 leading-relaxed max-w-xl">
-              J'accueille vos enfants dans un environnement calme, sécurisé et stimulant. 
-              Un accompagnement personnalisé pour grandir à son propre rythme.
+              J'accueille vos enfants dans un environnement calme, sécurisé et stimulant à Saint-Clément. 
+              Un accompagnement personnalisé pour grandir sereinement et à son propre rythme.
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
@@ -93,14 +93,10 @@ export default function App() {
                 Prendre contact
               </a>
               <div className="flex items-center gap-3 px-6 py-4 bg-white rounded-2xl border border-stone-100 shadow-sm">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-orange-200 overflow-hidden">
-                      <img src={`https://picsum.photos/seed/baby${i}/100/100`} alt="Enfant" referrerPolicy="no-referrer" />
-                    </div>
-                  ))}
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-sm font-bold text-stone-700">2 places disponibles actuellement</span>
                 </div>
-                <span className="text-sm font-medium text-stone-500">Places prises jusqu'en 2027</span>
               </div>
             </div>
           </motion.div>
@@ -311,7 +307,7 @@ export default function App() {
                 </div>
               </div>
 
-              <a href="https://www.facebook.com/people/Jessica-Giordano-Les-b%C3%A9b%C3%A9s-Cl%C3%A9m/100063625447167/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 group">
+              <a href="https://www.facebook.com/search/top?q=les%20b%C3%A9b%C3%A9s%20clem" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 group">
                 <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors">
                   <Facebook size={28} />
                 </div>
