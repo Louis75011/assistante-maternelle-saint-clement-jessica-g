@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { motion } from "motion/react";
+import { ReactNode, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Phone, MapPin, Clock, Baby, Heart, ShieldCheck, Sun, Home,
   Facebook, CheckCircle2, GraduationCap, HandMetal, Users,
@@ -28,8 +28,13 @@ const SITE_DATA = {
 
 // ─── Mapping des images — modifier les chemins ici uniquement ──────────────
 const IMAGES = {
-  hero: "/images/bebesclem_domicile_roussille.jpg",
-  logo: "/images/bebesclem_logo_carte_pro.webp",
+  heroSlides: [
+    { src: "/images/bebesclem_domicile_jardin_02.webp", alt: "Le jardin de Jessica à Saint-Clément" },
+    { src: "/images/bebesclem_domicile_roussille.jpg", alt: "Maison de Jessica Giordano" },
+    { src: "/images/bebesclem_domicile_entree.webp", alt: "Entrée de la maison" },
+    { src: "/images/bebesclem_domicile_jeux_exterieurs.webp", alt: "Espace jeux extérieur" },
+  ],
+  logo: "/images/bebesclem_illustration_lapin.jpg",
   apropos: [
     { src: "/images/bebesclem_domicile_jardin_01.webp", alt: "Jardin de Jessica" },
     { src: "/images/bebesclem_domicile_bibliotheque.jpg", alt: "Bibliothèque" },
@@ -47,11 +52,18 @@ const IMAGES = {
   ],
   avis: [
     { src: "/images/bebesclem_avis_jetadore_01.webp", legende: "Un mot d'un enfant accueilli" },
-    { src: "/images/bebesclem_avis_merci_jessica_01.webp", legende: "Un dessin pour Jessica" },
-    { src: "/images/bebesclem_avis_merci_occupee_01.webp", legende: "Un souvenir chaleureux" },
-    { src: "/images/bebesclem_avis_jetadore_02.jpg", legende: "Un mot d'un enfant accueilli" },
     { src: "/images/bebesclem_avis_merci_jessica_02.jpg", legende: "Un dessin pour Jessica" },
     { src: "/images/bebesclem_avis_merci_occupee_02.jpg", legende: "Un souvenir chaleureux" },
+    { src: "/images/bebesclem_avis_jetadore_02.jpg", legende: "Un mot d'un enfant accueilli" },
+  ],
+  // Documents textes (lettres/photos de familles)
+  documentsTextes: [
+    { src: "/images/textes/bebesclem_document_texte_01.jpg", legende: "Carte de Mélody — 4 années inoubliables" },
+    { src: "/images/textes/bebesclem_document_texte_02.jpg", legende: "Avis famille de Gabrielle" },
+    { src: "/images/textes/bebesclem_document_texte_04.jpg", legende: "Lettre de Nathalie, Matthias et Enola" },
+    { src: "/images/textes/bebesclem_document_texte_03.jpg", legende: "Lettre famille de Florian" },
+    { src: "/images/textes/bebesclem_document_manuscrit_01.jpg", legende: "Lettre manuscrite — famille de Romain" },
+    { src: "/images/textes/bebesclem_document_manuscrit_02.jpg", legende: "Avis famille de Gabrielle" },
   ],
 };
 
@@ -79,6 +91,45 @@ const SectionTitle = ({ titre, sous }: { titre: string; sous?: string }) => (
     {sous && <p className="text-[#4A6885] max-w-2xl mx-auto">{sous}</p>}
   </div>
 );
+
+// ─── Composant Hero Slideshow ─────────────────────────────────────────────
+function HeroSlideshow() {
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % IMAGES.heroSlides.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+  return (
+    <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl aspect-[4/5]">
+      <AnimatePresence mode="sync">
+        <motion.img
+          key={current}
+          src={IMAGES.heroSlides[current].src}
+          alt={IMAGES.heroSlides[current].alt}
+          className="w-full h-full object-cover absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+        />
+      </AnimatePresence>
+      {/* Indicateurs */}
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        {IMAGES.heroSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              i === current ? "bg-white scale-125" : "bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function App() {
   return (
@@ -183,13 +234,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl aspect-[4/5]">
-              <img
-                src={IMAGES.hero}
-                alt="Maison de Jessica Giordano, assistante maternelle à Saint-Clément"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <HeroSlideshow />
             {/* Badge flottant */}
             <div className="absolute top-8 -left-4 z-20 bg-white rounded-2xl shadow-lg px-4 py-3 border border-[#B8CED9]/50">
               <p className="text-xs text-[#7A9EB8] font-medium">Agrément PMI</p>
@@ -483,8 +528,8 @@ export default function App() {
           titre="Ils me font confiance"
           sous="Des mots et des dessins d'enfants accueillis — la plus belle des preuves."
         />
-        {/* Grille dessins/mots */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-14">
+        {/* Dessins et mots d'enfants */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-14">
           {IMAGES.avis.map((avis, i) => (
             <motion.div
               key={i}
@@ -494,21 +539,69 @@ export default function App() {
               <img
                 src={avis.src}
                 alt={avis.legende}
-                className="w-full aspect-[4/3] object-cover"
+                className="w-full aspect-square object-cover"
               />
-              <p className="text-xs text-[#7A9EB8] text-center py-4 px-4 italic">{avis.legende}</p>
+              <p className="text-xs text-[#7A9EB8] text-center py-3 px-3 italic">{avis.legende}</p>
             </motion.div>
           ))}
         </div>
-        {/* Témoignages texte — placeholders en attente des vrais textes */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* TEMOIGNAGE_TEXTE_1_A_RENSEIGNER */}
-          {/* TEMOIGNAGE_TEXTE_2_A_RENSEIGNER */}
-          <div className="bg-[#2C3D56]/8 border-2 border-dashed border-[#B8CED9] rounded-3xl p-8 text-center">
-            <p className="text-[#7A9EB8] text-sm italic">Témoignage parent — à renseigner</p>
-          </div>
-          <div className="bg-[#2C3D56]/8 border-2 border-dashed border-[#B8CED9] rounded-3xl p-8 text-center">
-            <p className="text-[#7A9EB8] text-sm italic">Témoignage parent — à renseigner</p>
+
+        {/* Témoignages texte */}
+        <div className="grid md:grid-cols-2 gap-8 mb-14">
+          {[
+            {
+              auteur: "Nathalie, Matthias & Enola",
+              texte: "Les mots sont parfois plus faciles que les paroles, même s'ils ne sont pas assez forts pour décrire notre gratitude. Enola est arrivée chez vous toute petite, bébé — vous l'avez aidée à grandir, à s'épanouir, à devenir cette petite fille que nous aimons tant. Chez vous, nous la savions en sécurité, heureuse, épanouie. Nous avions toute confiance en vous. Merci de vous être si bien occupée de notre fille durant ces dernières années.",
+              note: "★★★★★",
+            },
+            {
+              auteur: "Mélody",
+              texte: "Merci pour ces (presque !) 4 années, elles ont été superbes ! Grâce à toi je me suis fait mes premiers copains : Arthur, Ewen, Manon, Enola, Hugo, Joseph... Merci d'avoir su m'aider à grandir et d'avoir su me cajoler quand il le fallait. Merci d'avoir été tout simplement toi, une nounou géniale ! Tu es et resteras toujours dans mon cœur.",
+              note: "★★★★★",
+            },
+            {
+              auteur: "Famille de Gabrielle",
+              texte: "Jessica a été la nounou de Gabrielle durant ces deux dernières années. J'ai beaucoup apprécié son approche centrée sur les besoins de l'enfant, l'autonomie, le bien grandir. Elle propose une grande variété de jeux, d'activités manuelles. La complicité qu'elles ont développée est belle à voir. Je vous la recommande les yeux fermés !!",
+              note: "★★★★★",
+            },
+            {
+              auteur: "Nathalie, famille de Romain",
+              texte: "Je garderai en mémoire vos échanges de sourires, vos regards complices, votre façon de rire en me racontant des anecdotes. J'ai aimé le voir dans vos bras car il y a toujours été bien. C'est une véritable chance qu'il a eu d'être à vos côtés pour ses débuts dans la vie. Les mots me manquent pour vous dire à quel point je vous suis reconnaissante. Un immense MERCI !",
+              note: "★★★★★",
+            },
+          ].map(({ auteur, texte, note }, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -3 }}
+              className="bg-white rounded-3xl p-8 border border-[#B8CED9]/50 shadow-sm flex flex-col gap-4"
+            >
+              <p className="text-[#D4A854] text-lg tracking-widest">{note}</p>
+              <p className="text-[#4A6885] text-sm leading-relaxed italic">"{texte}"</p>
+              <p className="text-[#2C3D56] font-bold text-sm mt-auto">— {auteur}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Galerie documents / lettres */}
+        <div className="border-t border-[#B8CED9]/60 pt-12">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-[#7A9EB8] mb-8">
+            Lettres et courriers des familles
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {IMAGES.documentsTextes.map((doc, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.02 }}
+                className="rounded-2xl overflow-hidden shadow-sm border border-[#B8CED9]/40 bg-white"
+              >
+                <img
+                  src={doc.src}
+                  alt={doc.legende}
+                  className="w-full aspect-[3/4] object-cover"
+                />
+                <p className="text-xs text-[#7A9EB8] text-center py-3 px-3 italic">{doc.legende}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </Section>
