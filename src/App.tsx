@@ -30,35 +30,48 @@ const SITE_DATA = {
 
 // ─── Mapping des images — modifier les chemins ici uniquement ──────────────
 const IMAGES = {
+  // Carrousel hero (photos lieux, paysage)
   heroSlides: [
-    { src: "/images/lieux/bebesclem_domicile_jardin_02.webp", alt: "Le jardin de Jessica à Saint-Clément" },
+    { src: "/images/lieux/bebesclem_domicile_jardin_02.webp", alt: "Le jardin - espace jeux extérieur" },
     { src: "/images/lieux/bebesclem_domicile_roussille.jpg", alt: "Maison de Jessica Giordano" },
+    { src: "/images/lieux/bebesclem_domicile_jeux_maquette.jpg", alt: "Espace jeux — circuit de train" },
     { src: "/images/lieux/bebesclem_domicile_entree.webp", alt: "Entrée de la maison" },
-    { src: "/images/lieux/bebesclem_domicile_jeux_maquette.jpg", alt: "Espace jeux" },
+    { src: "/images/lieux/bebesclem_domicile_jardin_01.webp", alt: "Le jardin" },
+    { src: "/images/lieux/bebesclem_domicile_rangement.webp", alt: "Espace rangement" },
   ],
   logo: "/images/bebesclem_illustration_lapin.jpg",
+  // Section à propos (4 photos lieux)
   apropos: [
-    { src: "/images/lieux/bebesclem_domicile_jardin_01.webp", alt: "Jardin de Jessica" },
+    { src: "/images/lieux/bebesclem_domicile_jardin_02.webp", alt: "Jardin et espace de jeux" },
     { src: "/images/enfants/bebesclem_domicile_bibliotheque.jpg", alt: "Bibliothèque" },
-    { src: "/images/lieux/bebesclem_domicile_rangement.webp", alt: "Espace rangement" },
-    { src: "/images/lieux/bebesclem_domicile_jeux_maquette.jpg", alt: "Espace de jeux" },
+    { src: "/images/lieux/bebesclem_domicile_jeux_maquette.jpg", alt: "Circuit de train en bois" },
+    { src: "/images/lieux/bebesclem_domicile_entree.webp", alt: "Entrée de la maison" },
   ],
+  // Portfolio cadre de vie (tous les lieux + bibliothèque + affiche)
   portfolio: [
+    { src: "/images/lieux/bebesclem_domicile_jardin_02.webp", label: "Jardin - espace jeux" },
+    { src: "/images/lieux/bebesclem_domicile_jeux_maquette.jpg", label: "Circuit de train" },
+    { src: "/images/lieux/bebesclem_domicile_roussille.jpg", label: "La maison" },
     { src: "/images/lieux/bebesclem_domicile_entree.webp", label: "L'entrée" },
     { src: "/images/lieux/bebesclem_domicile_jardin_01.webp", label: "Le jardin" },
-    { src: "/images/lieux/bebesclem_domicile_jardin_02.webp", label: "Espace extérieur" },
-    { src: "/images/lieux/bebesclem_domicile_jeux_maquette.jpg", label: "Espace de jeux" },
-    { src: "/images/lieux/bebesclem_domicile_roussille.jpg", label: "La maison" },
     { src: "/images/enfants/bebesclem_domicile_bibliotheque.jpg", label: "Bibliothèque" },
     { src: "/images/lieux/bebesclem_domicile_rangement.webp", label: "Espace rangement" },
+    { src: "/images/bebesclem_affiche_photos_enfants.jpg", label: "Les enfants accueillis" },
   ],
-  avis: [
-    { src: "/images/enfants/bebesclem_avis_jetadore_02.jpg", legende: "Un mot d'un enfant accueilli" },
-    { src: "/images/enfants/bebesclem_avis_merci_jessica_02.jpg", legende: "Un dessin pour Jessica" },
-    { src: "/images/enfants/bebesclem_avis_merci_occupee_02.jpg", legende: "Un souvenir chaleureux" },
-    { src: "/images/enfants/bebesclem_dessin_enfant_multicolore.jpg", legende: "Une création d'enfant" },
+  // Déssins et mots des enfants (section avis)
+  dessinsEnfants: [
+    { src: "/images/enfants/bebesclem_avis_jetadore_02.jpg", legende: "Je t'adore !" },
+    { src: "/images/enfants/bebesclem_avis_merci_jessica_02.jpg", legende: "Merci Jessica" },
+    { src: "/images/enfants/bebesclem_avis_merci_occupee_02.jpg", legende: "Merci, tu es très occupée !" },
+    { src: "/images/enfants/bebesclem_dessin_enfant_multicolore.jpg", legende: "Création multicolore" },
+    { src: "/images/enfants/bebesclem_dessin_enfant_crayon.jpg", legende: "Dessin au crayon" },
+    { src: "/images/enfants/bebesclem_dessin_enfant_pompons.jpg", legende: "Activité pompons" },
+    { src: "/images/enfants/bebesclem_dessin_enfant_texte_02.jpg", legende: "Un mot d'enfant" },
+    { src: "/images/enfants/bebesclem_dessin_enfant_texte_03.jpg", legende: "Un mot d'enfant" },
+    { src: "/images/lieux/bebesclem_dessin_enfant_texte_01.jpg", legende: "Un souvenir" },
+    { src: "/images/enfants/bebesclem_illustration_livre_enfants.jpg", legende: "Lecture et éveil" },
   ],
-  // Documents textes (lettres/photos de familles)
+  // Documents / lettres des familles
   documentsTextes: [
     { src: "/images/textes/bebesclem_document_texte_01.jpg", legende: "Carte de Mélody - 4 années inoubliables" },
     { src: "/images/textes/bebesclem_document_texte_02.jpg", legende: "Avis famille de Gabrielle" },
@@ -66,6 +79,12 @@ const IMAGES = {
     { src: "/images/textes/bebesclem_document_texte_03.jpg", legende: "Lettre famille de Florian" },
     { src: "/images/textes/bebesclem_document_manuscrit_01.jpg", legende: "Lettre manuscrite - famille de Romain" },
     { src: "/images/textes/bebesclem_document_manuscrit_02.jpg", legende: "Avis famille de Gabrielle" },
+    { src: "/images/textes/bebesclem_document_affiche_verte.jpg", legende: "Affiche d'information" },
+  ],
+  // Illustrations décoratives
+  illustrations: [
+    { src: "/images/bebesclem_illustration_arbre_genet.jpg", alt: "Illustration arbre" },
+    { src: "/images/bebesclem_illustration_ballons.jpg", alt: "Illustration ballons" },
   ],
 };
 
@@ -104,8 +123,8 @@ const SectionTitle = ({ titre, sous }: { titre: string; sous?: string }) => (
   </motion.div>
 );
 
-// ─── Composant Hero Slideshow ─────────────────────────────────────────────
-function HeroSlideshow() {
+// ─── Hero plein écran paysage ───────────────────────────────────────────────────
+function HeroSection() {
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => {
@@ -113,32 +132,108 @@ function HeroSlideshow() {
     }, 4500);
     return () => clearInterval(timer);
   }, []);
+
   return (
-    <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl aspect-[4/5]">
-      <AnimatePresence mode="sync">
-        <motion.img
-          key={current}
-          src={IMAGES.heroSlides[current].src}
-          alt={IMAGES.heroSlides[current].alt}
-          className="w-full h-full object-cover absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
-        />
-      </AnimatePresence>
-      {/* Indicateurs */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        {IMAGES.heroSlides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`w-2 h-2 rounded-full transition-all ${i === current ? "bg-white scale-125" : "bg-white/50"
-              }`}
+    <section id="accueil" className="relative w-full pt-20">
+      {/* Image plein écran paysage */}
+      <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-[#2C3D56]">
+        <AnimatePresence mode="sync">
+          <motion.img
+            key={current}
+            src={IMAGES.heroSlides[current].src}
+            alt={IMAGES.heroSlides[current].alt}
+            className="absolute inset-0 w-full h-full object-cover"
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
           />
-        ))}
+        </AnimatePresence>
+
+        {/* Gradient overlay pour lisibilité */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#2C3D56]/75 via-[#2C3D56]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#2C3D56]/60 via-transparent to-transparent" />
+
+        {/* Contenu texte desktop — overlay */}
+        <div className="absolute inset-0 hidden md:flex items-end pb-12 px-10 lg:px-20">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 bg-[#D4A854]/20 backdrop-blur-sm text-[#D4A854] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-5 border border-[#D4A854]/30">
+              <ShieldCheck size={13} />
+              Agréée depuis 2011 · Corrèze
+            </div>
+            <h1 className="text-5xl xl:text-7xl font-bold text-white leading-[1.05] mb-3 drop-shadow-lg">
+              Assistante<br />
+              <span className="text-[#D4A854]">Maternelle</span>
+            </h1>
+            <p className="text-xl font-semibold text-white/90 mb-1">à Saint-Clément (19700)</p>
+            <p className="text-white/70 text-sm uppercase tracking-widest mb-5">Corrèze · Accueil à domicile</p>
+            <p className="text-white/80 italic mb-6">"{SITE_DATA.slogan}"</p>
+            <div className="flex flex-wrap gap-3">
+              <a href="#contact" className="bg-[#D4A854] text-white px-7 py-3.5 rounded-2xl font-bold hover:bg-[#b8943e] transition-all flex items-center gap-2 shadow-lg shadow-[#D4A854]/40">
+                Prendre contact <ChevronRight size={17} />
+              </a>
+              <a href="#services" className="bg-white/15 backdrop-blur-sm text-white px-7 py-3.5 rounded-2xl font-bold hover:bg-white/25 transition-all border border-white/30">
+                Voir mes services
+              </a>
+            </div>
+          </div>
+          {/* Badge places dispo */}
+          <div className="ml-auto self-center hidden lg:flex flex-col items-center gap-2">
+            <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm px-5 py-3 rounded-2xl border border-white/20">
+              <div className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse" />
+              <span className="text-white font-bold text-sm">{SITE_DATA.placesDisponibles} places disponibles</span>
+            </div>
+            <div className="bg-white/15 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/20 text-center">
+              <p className="text-white/60 text-xs">Agrément PMI</p>
+              <p className="text-white font-bold text-sm">Corrèze · 2011</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Indicateurs */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {IMAGES.heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === current ? "bg-white w-8" : "bg-white/40 w-1.5"
+              }`}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+
+      {/* Contenu mobile — sous l'image */}
+      <div className="md:hidden px-6 py-10 bg-[#EDE7DC]">
+        <div className="inline-flex items-center gap-2 bg-[#D4A854]/15 text-[#D4A854] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-5">
+          <ShieldCheck size={13} />
+          Agréée depuis 2011 · Corrèze
+        </div>
+        <h1 className="text-4xl font-bold text-[#2C3D56] leading-[1.1] mb-3">
+          Assistante<br />
+          <span className="text-[#D4A854]">Maternelle</span>
+        </h1>
+        <p className="text-lg font-semibold text-[#4A6885] mb-1">à Saint-Clément (19700)</p>
+        <p className="text-[#7A9EB8] text-xs uppercase tracking-widest mb-4">Corrèze · Accueil à domicile</p>
+        <p className="text-[#4A6885] italic mb-6">"{SITE_DATA.slogan}"</p>
+        <p className="text-[#4A6885] mb-6 leading-relaxed">
+          J'accompagne les enfants vers l'autonomie dans un cadre calme et sécurisé, du lundi au vendredi.
+        </p>
+        <div className="flex flex-wrap gap-3 mb-5">
+          <a href="#contact" className="bg-[#2C3D56] text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2">
+            Prendre contact <ChevronRight size={17} />
+          </a>
+          <a href="#services" className="bg-[#E4EEF4] text-[#2C3D56] px-6 py-3 rounded-2xl font-bold border border-[#B8CED9]">
+            Mes services
+          </a>
+        </div>
+        <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#E4EEF4] rounded-xl border border-[#B8CED9]/50">
+          <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
+          <span className="text-sm font-bold text-[#4A6885]">{SITE_DATA.placesDisponibles} places disponibles</span>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -569,20 +664,24 @@ export default function App() {
           titre="Ils me font confiance"
           sous="Des mots et des dessins d'enfants accueillis - la plus belle des preuves."
         />
-        {/* Dessins et mots d'enfants */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-14">
-          {IMAGES.avis.map((avis, i) => (
+        {/* Dessins et oeuvres des enfants */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-14">
+          {IMAGES.dessinsEnfants.map((item, i) => (
             <motion.div
               key={i}
-              whileHover={{ y: -4 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: i * 0.05 }}
+              whileHover={{ y: -4, rotate: i % 2 === 0 ? 1 : -1 }}
               className="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#B8CED9]/50"
             >
               <img
-                src={avis.src}
-                alt={avis.legende}
+                src={item.src}
+                alt={item.legende}
                 className="w-full aspect-square object-cover"
               />
-              <p className="text-xs text-[#7A9EB8] text-center py-3 px-3 italic">{avis.legende}</p>
+              <p className="text-xs text-[#7A9EB8] text-center py-2.5 px-2 italic leading-snug">{item.legende}</p>
             </motion.div>
           ))}
         </div>
