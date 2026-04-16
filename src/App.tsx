@@ -196,9 +196,8 @@ function HeroSection() {
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === current ? "bg-white w-8" : "bg-white/40 w-1.5"
-              }`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === current ? "bg-white w-8" : "bg-white/40 w-1.5"
+                }`}
             />
           ))}
         </div>
