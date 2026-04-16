@@ -121,10 +121,6 @@ Tout modifier via l'objet `IMAGES` en haut de `App.tsx` uniquement.
 4. Hébergement payant (hors Vercel free)
 5. SEO schema.org `ChildCare`
 
-
-| Champ | Valeur |
-|---|---|
-| **Nom affiché** | Jessica Giordano — Assistante Maternelle |
 | **Ancien nom** | Les bébés Clém *(abandonné — ne plus utiliser en titre principal ; effacer partout sauf éventuellement en sous-texte très discret si nécessaire pour la continuité)* |
 | **Activité** | Assistante maternelle agréée, accueil à domicile |
 | **Localisation** | Saint-Clément (19700) — Corrèze, Limousin |
