@@ -2,8 +2,8 @@ import { ReactNode, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Phone, MapPin, Clock, Baby, Heart, ShieldCheck, Sun, Home,
-  Facebook, CheckCircle2, GraduationCap, HandMetal, Users,
-  BookOpen, Trees, Euro, Star, ChevronRight, Mail,
+  CheckCircle2, GraduationCap, HandMetal, Users,
+  BookOpen, Trees, Euro, Star, ChevronRight, Mail, ExternalLink, Navigation,
 } from "lucide-react";
 
 // ─── Données centralisées ──────────────────────────────────────────────────
@@ -14,16 +14,18 @@ const SITE_DATA = {
   telephone: "06.61.99.74.95",
   telephoneRaw: "0661997495",
   email: "jeully19@gmail.com",
-  adresse: "4 Rue du Pré l'Étang — Lotissement la Roussille",
+  adresse: "4 Rue du Pré l'Étang - Lotissement la Roussille",
   ville: "19700 Saint-Clément",
-  departement: "Corrèze — Limousin",
+  departement: "Corrèze - Limousin",
+  googleBusiness: "https://share.google/YpFQO6T4wNdtFiQPq",
+  googleMaps: "https://www.google.com/maps/dir/?api=1&destination=4+Rue+du+Pré+l'Étang+19700+Saint-Clément+Corrèze",
   agrement: "Depuis juin 2011",
   placesDisponibles: 2,
   tarifHoraire: "TARIF_HORAIRE_A_RENSEIGNER",
   tarifComplet: "TARIF_COMPLET_A_RENSEIGNER",
   tarifPartiel: "TARIF_PARTIEL_A_RENSEIGNER",
   tarifPeri: "TARIF_PERISCOLAIRE_A_RENSEIGNER",
-  facebook: "https://www.facebook.com/search/top?q=les%20b%C3%A9b%C3%A9s%20clem",
+
 };
 
 // ─── Mapping des images — modifier les chemins ici uniquement ──────────────
@@ -78,7 +80,11 @@ const Section = ({ children, className = "", id = "" }: { children: ReactNode, c
 
 const Card = ({ children, className = "" }: { children: ReactNode, className?: string }) => (
   <motion.div
-    whileHover={{ y: -5 }}
+    initial={{ opacity: 0, y: 24 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    whileHover={{ y: -6, boxShadow: "0 16px 40px rgba(44,61,86,0.12)" }}
+    transition={{ duration: 0.45, ease: "easeOut" }}
     className={`bg-[#E4EEF4] rounded-3xl p-8 shadow-sm border border-[#B8CED9]/50 ${className}`}
   >
     {children}
@@ -86,10 +92,16 @@ const Card = ({ children, className = "" }: { children: ReactNode, className?: s
 );
 
 const SectionTitle = ({ titre, sous }: { titre: string; sous?: string }) => (
-  <div className="text-center mb-16">
+  <motion.div
+    className="text-center mb-16"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+  >
     <h2 className="text-4xl font-bold text-[#2C3D56] mb-4">{titre}</h2>
     {sous && <p className="text-[#4A6885] max-w-2xl mx-auto">{sous}</p>}
-  </div>
+  </motion.div>
 );
 
 // ─── Composant Hero Slideshow ─────────────────────────────────────────────
@@ -139,21 +151,26 @@ export default function App() {
       ══════════════════════════════════════ */}
       <nav className="fixed top-0 w-full bg-[#E4EEF4]/90 backdrop-blur-md z-50 border-b border-[#B8CED9]/50">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <img
+          {/* Logo cliquable - retour haut de page */}
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            className="flex items-center gap-3 group"
+          >
+            <motion.img
               src={IMAGES.logo}
-              alt="Jessica Giordano — Assistante Maternelle"
+              alt="Jessica Giordano - Assistante Maternelle"
               className="h-12 w-auto rounded-lg object-cover"
+              whileHover={{ scale: 1.06 }}
+              transition={{ duration: 0.2 }}
             />
             <div className="hidden sm:block">
-              <p className="font-bold text-base leading-tight text-[#2C3D56]">Jessica Giordano</p>
+              <p className="font-bold text-base leading-tight text-[#2C3D56] group-hover:text-[#D4A854] transition-colors">Jessica Giordano</p>
               <p className="text-xs text-[#7A9EB8]">Assistante Maternelle · Saint-Clément</p>
             </div>
-          </div>
+          </a>
           {/* Liens */}
           <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-[#4A6885]">
-            <a href="#accueil" className="hover:text-[#D4A854] transition-colors">Accueil</a>
             <a href="#a-propos" className="hover:text-[#D4A854] transition-colors">À propos</a>
             <a href="#services" className="hover:text-[#D4A854] transition-colors">Services</a>
             <a href="#tarifs" className="hover:text-[#D4A854] transition-colors">Tarifs</a>
@@ -193,14 +210,14 @@ export default function App() {
             </h1>
             <p className="text-2xl font-semibold text-[#4A6885] mb-1">à Saint-Clément (19700)</p>
             <p className="text-[#7A9EB8] text-sm uppercase tracking-widest mb-5">
-              Corrèze — Limousin · Accueil à domicile
+              Corrèze - Limousin · Accueil à domicile
             </p>
             <p className="text-xl italic text-[#4A6885] font-medium mb-6">
               "{SITE_DATA.slogan}"
             </p>
             <p className="text-lg text-[#4A6885] mb-8 leading-relaxed max-w-xl">
               J'accompagne les enfants vers l'autonomie et la vie en collectivité à travers des
-              activités adaptées, dans un cadre calme et sécurisé — espaces jeux et dortoir dédiés,
+              activités adaptées, dans un cadre calme et sécurisé, espaces jeux et dortoir dédiés,
               du lundi au vendredi.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -239,8 +256,20 @@ export default function App() {
               <p className="text-xs text-[#7A9EB8] font-medium">Agrément PMI</p>
               <p className="text-sm font-bold text-[#2C3D56]">Corrèze · Depuis 2011</p>
             </div>
-            <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#D4A854] rounded-full blur-3xl opacity-30 -z-10" />
-            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#7A9EB8] rounded-full blur-3xl opacity-30 -z-10" />
+            <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#D4A854] rounded-full blur-3xl -z-10 pointer-events-none">
+              <motion.div
+                className="w-full h-full"
+                animate={{ scale: [1, 1.35, 1], opacity: [0.3, 0.55, 0.3] }}
+                transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+              />
+            </div>
+            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#7A9EB8] rounded-full blur-3xl -z-10 pointer-events-none">
+              <motion.div
+                className="w-full h-full"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1.5 }}
+              />
+            </div>
           </motion.div>
         </div>
       </Section>
@@ -254,7 +283,7 @@ export default function App() {
             { icon: ShieldCheck, label: "Agréée depuis", value: "2011" },
             { icon: HandMetal, label: "Spécialité", value: "Signes (LSF)" },
             { icon: MapPin, label: "Localisation", value: "Saint-Clément" },
-            { icon: Clock, label: "Accueil", value: "Lun — Ven" },
+            { icon: Clock, label: "Accueil", value: "Lun - Ven" },
           ].map((stat, i) => (
             <Card key={i} className="text-center flex flex-col items-center justify-center py-10">
               <stat.icon className="text-[#D4A854] mb-4" size={32} />
@@ -274,12 +303,20 @@ export default function App() {
           <div className="order-2 lg:order-1">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4 pt-8">
-                <img src={IMAGES.apropos[0].src} alt={IMAGES.apropos[0].alt} className="rounded-3xl shadow-lg object-cover h-52 w-full" />
-                <img src={IMAGES.apropos[1].src} alt={IMAGES.apropos[1].alt} className="rounded-3xl shadow-lg object-cover h-40 w-full" />
+                <div className="rounded-3xl overflow-hidden shadow-lg h-52">
+                  <motion.img src={IMAGES.apropos[0].src} alt={IMAGES.apropos[0].alt} className="w-full h-full object-cover" whileHover={{ scale: 1.07 }} transition={{ duration: 0.4 }} />
+                </div>
+                <div className="rounded-3xl overflow-hidden shadow-lg h-40">
+                  <motion.img src={IMAGES.apropos[1].src} alt={IMAGES.apropos[1].alt} className="w-full h-full object-cover" whileHover={{ scale: 1.07 }} transition={{ duration: 0.4 }} />
+                </div>
               </div>
               <div className="space-y-4">
-                <img src={IMAGES.apropos[2].src} alt={IMAGES.apropos[2].alt} className="rounded-3xl shadow-lg object-cover h-40 w-full" />
-                <img src={IMAGES.apropos[3].src} alt={IMAGES.apropos[3].alt} className="rounded-3xl shadow-lg object-cover h-52 w-full" />
+                <div className="rounded-3xl overflow-hidden shadow-lg h-40">
+                  <motion.img src={IMAGES.apropos[2].src} alt={IMAGES.apropos[2].alt} className="w-full h-full object-cover" whileHover={{ scale: 1.07 }} transition={{ duration: 0.4 }} />
+                </div>
+                <div className="rounded-3xl overflow-hidden shadow-lg h-52">
+                  <motion.img src={IMAGES.apropos[3].src} alt={IMAGES.apropos[3].alt} className="w-full h-full object-cover" whileHover={{ scale: 1.07 }} transition={{ duration: 0.4 }} />
+                </div>
               </div>
             </div>
           </div>
@@ -289,7 +326,7 @@ export default function App() {
             <h2 className="text-4xl font-bold text-[#2C3D56] mb-6">Jessica Giordano</h2>
             <p className="text-lg text-[#4A6885] mb-4 leading-relaxed">
               Assistante maternelle agréée depuis juin 2011 à Saint-Clément en Corrèze, j'accueille
-              vos enfants à mon domicile en temps complet, temps partiel ou périscolaire —
+              vos enfants à mon domicile en temps complet, temps partiel ou périscolaire -
               mercredis et vacances compris.
             </p>
             <p className="text-[#4A6885] mb-8 leading-relaxed">
@@ -504,15 +541,20 @@ export default function App() {
           {IMAGES.portfolio.map((img, i) => (
             <motion.div
               key={i}
-              whileHover={{ scale: 1.02 }}
-              className={`rounded-3xl overflow-hidden shadow-sm ${i === 0 ? "col-span-2 row-span-2" : ""}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              className={`rounded-3xl overflow-hidden shadow-sm cursor-pointer ${i === 0 ? "col-span-2 row-span-2" : ""}`}
               style={{ minHeight: i === 0 ? "320px" : "160px" }}
             >
-              <img
+              <motion.img
                 src={img.src}
                 alt={img.label}
                 className="w-full h-full object-cover"
                 style={{ minHeight: "inherit" }}
+                whileHover={{ scale: 1.09 }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
               />
             </motion.div>
           ))}
@@ -525,7 +567,7 @@ export default function App() {
       <Section id="avis" className="bg-[#E4EEF4]">
         <SectionTitle
           titre="Ils me font confiance"
-          sous="Des mots et des dessins d'enfants accueillis — la plus belle des preuves."
+          sous="Des mots et des dessins d'enfants accueillis - la plus belle des preuves."
         />
         {/* Dessins et mots d'enfants */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-14">
@@ -576,7 +618,7 @@ export default function App() {
             >
               <p className="text-[#D4A854] text-lg tracking-widest">{note}</p>
               <p className="text-[#4A6885] text-sm leading-relaxed italic">"{texte}"</p>
-              <p className="text-[#2C3D56] font-bold text-sm mt-auto">— {auteur}</p>
+              <p className="text-[#2C3D56] font-bold text-sm mt-auto">- {auteur}</p>
             </motion.div>
           ))}
         </div>
@@ -652,85 +694,82 @@ export default function App() {
                   <p className="font-medium">{SITE_DATA.email}</p>
                 </div>
               </a>
-              {/* Facebook */}
-              <a href={SITE_DATA.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 group">
-                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                  <Facebook size={24} />
+              {/* Fiche Google */}
+              <a
+                href={SITE_DATA.googleBusiness}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-5 group"
+              >
+                <div className="w-14 h-14 bg-[#D4A854]/20 rounded-2xl flex items-center justify-center group-hover:bg-[#D4A854] transition-colors">
+                  <Star size={24} className="text-[#D4A854] group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <p className="text-[#7A9EB8] text-xs">Suivez-moi</p>
-                  <p className="font-medium">Les bébés Clém — Jessica Giordano</p>
+                  <p className="text-[#7A9EB8] text-xs">Avis & fiche Google</p>
+                  <p className="font-medium text-[#D4A854] group-hover:underline">Voir notre fiche Google</p>
                 </div>
               </a>
             </div>
           </div>
 
-          {/* Carte + formulaire */}
+          {/* Carte localisation */}
           <div className="flex flex-col gap-6">
-            {/* Carte Google Maps */}
             <div className="bg-white/5 p-6 rounded-[2rem] border border-white/10">
-              <h3 className="text-lg font-bold mb-4">Localisation</h3>
-              <div className="aspect-video rounded-2xl overflow-hidden relative bg-[#4A6885]/30">
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-[#7A9EB8] p-6 text-center z-10">
-                  <MapPin size={40} className="mb-3 opacity-30" />
-                  <p className="text-sm">
-                    4 Rue du Pré l'Étang<br />
-                    Lotissement la Roussille<br />
-                    19700 Saint-Clément, Corrèze
-                  </p>
-                </div>
+              <h3 className="text-lg font-bold mb-2">Localisation</h3>
+              <p className="text-[#B8CED9] text-sm mb-5">
+                4 Rue du Pré l'Étang, Lotissement la Roussille<br />19700 Saint-Clément, Corrèze
+              </p>
+              {/* Carte embed */}
+              <div className="rounded-2xl overflow-hidden mb-5 aspect-video bg-[#4A6885]/20">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.123456789!2d1.7345!3d45.3456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f8976543210:0x123456789abcdef!2s4%20Rue%20du%20Pr%C3%A9%20l'Etang%2C%2019700%20Saint-Cl%C3%A9ment!5e0!3m2!1sfr!2sfr!4v1234567890"
-                  className="w-full h-full border-0 grayscale opacity-40 absolute inset-0"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5519.2!2d1.736!3d45.3577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f8e74f0a5b1c5d%3A0x0!2sSaint-Cl%C3%A9ment%2C+19700!5e0!3m2!1sfr!2sfr!4v1713268800000"
+                  className="w-full h-full border-0"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Localisation Jessica Giordano — Saint-Clément"
+                  title="Localisation Jessica Giordano - Saint-Clément"
                 />
               </div>
-            </div>
-            {/* Formulaire mailto */}
-            <div className="bg-white/5 p-6 rounded-[2rem] border border-white/10">
-              <h3 className="text-lg font-bold mb-5">Envoyez-moi un message</h3>
-              <form
-                className="space-y-4"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const form = e.target as HTMLFormElement;
-                  const nom = (form.elements.namedItem("nom") as HTMLInputElement).value;
-                  const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-                  const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
-                  window.location.href = `mailto:${SITE_DATA.email}?subject=Contact depuis le site — ${encodeURIComponent(nom)}&body=${encodeURIComponent(message)}%0A%0AEmail de réponse : ${encodeURIComponent(email)}`;
-                }}
-              >
-                <input
-                  name="nom"
-                  type="text"
-                  placeholder="Votre nom"
-                  required
-                  className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-[#7A9EB8] focus:outline-none focus:border-[#D4A854] text-sm"
-                />
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="Votre e-mail"
-                  required
-                  className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-[#7A9EB8] focus:outline-none focus:border-[#D4A854] text-sm"
-                />
-                <textarea
-                  name="message"
-                  placeholder="Votre message…"
-                  rows={4}
-                  required
-                  className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-[#7A9EB8] focus:outline-none focus:border-[#D4A854] text-sm resize-none"
-                />
-                <button
-                  type="submit"
-                  className="w-full bg-[#D4A854] text-white py-3 rounded-xl font-bold hover:bg-[#b8943e] transition-all"
+              {/* Boutons action */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={SITE_DATA.googleMaps}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 transition-colors text-white font-semibold py-3 px-4 rounded-xl text-sm border border-white/20"
                 >
-                  Envoyer le message
-                </button>
-              </form>
+                  <Navigation size={16} />
+                  Itinéraire
+                </a>
+                <a
+                  href={SITE_DATA.googleBusiness}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 bg-[#D4A854] hover:bg-[#b8943e] transition-colors text-white font-bold py-3 px-4 rounded-xl text-sm shadow-lg shadow-[#D4A854]/30"
+                >
+                  <Star size={16} />
+                  Fiche Google
+                  <ExternalLink size={14} className="opacity-70" />
+                </a>
+              </div>
+            </div>
+            {/* Rappel contact rapide */}
+            <div className="bg-white/5 p-6 rounded-[2rem] border border-white/10 flex flex-col gap-4">
+              <p className="font-bold text-lg">Contactez-moi directement</p>
+              <a
+                href={`tel:${SITE_DATA.telephoneRaw}`}
+                className="flex items-center gap-3 bg-[#D4A854] hover:bg-[#b8943e] transition-all text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-[#D4A854]/30"
+              >
+                <Phone size={20} />
+                {SITE_DATA.telephone}
+              </a>
+              <a
+                href={`mailto:${SITE_DATA.email}`}
+                className="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition-colors text-white font-semibold py-4 px-6 rounded-xl border border-white/20 text-sm"
+              >
+                <Mail size={20} />
+                {SITE_DATA.email}
+              </a>
             </div>
           </div>
         </div>
@@ -738,7 +777,7 @@ export default function App() {
         {/* Footer */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <p className="text-[#7A9EB8] text-center md:text-left">
-            © {new Date().getFullYear()} Jessica Giordano — Assistante Maternelle Agréée en Corrèze (19)
+            © {new Date().getFullYear()} Jessica Giordano - Assistante Maternelle Agréée en Corrèze (19)
           </p>
           <p className="text-[#7A9EB8]">
             Site réalisé par{" "}
